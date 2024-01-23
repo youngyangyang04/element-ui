@@ -1,124 +1,47 @@
-.vk-button {
-  --vk-button-font-weight: var(--vk-font-weight-primary);
-  --vk-button-border-color: var(--vk-border-color);
-  --vk-button-bg-color: var(--vk-fill-color-blank);
-  --vk-button-text-color: var(--vk-text-color-regular);
-  --vk-button-disabled-text-color: var(--vk-disabled-text-color);
-  --vk-button-disabled-bg-color: var(--vk-fill-color-blank);
-  --vk-button-disabled-border-color: var(--vk-border-color-light);
-  --vk-button-hover-text-color: var(--vk-color-primary);
-  --vk-button-hover-bg-color: var(--vk-color-primary-light-9);
-  --vk-button-hover-border-color: var(--vk-color-primary-light-7);
-  --vk-button-active-text-color: var(--vk-button-hover-text-color);
-  --vk-button-active-border-color: var(--vk-color-primary);
-  --vk-button-active-bg-color: var(--vk-button-hover-bg-color);
-  --vk-button-outline-color: var(--vk-color-primary-light-5);
-  --vk-button-active-color: var(--vk-text-color-primary);
-}
-.vk-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 1;
-  height: 32px;
+/* 按钮基本样式 */
+.el-button {
+  display: inline-block;
   white-space: nowrap;
+  -webkit-box-sizing: border-box;
   cursor: pointer;
-  color: var(--vk-button-text-color);
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: var(--el-color-white);
   text-align: center;
+  
   box-sizing: border-box;
-  outline: none;
-  transition: .1s;
-  font-weight: var(--vk-button-font-weight);
-  user-select: none;
-  vertical-align: middle;
-  -webkit-appearance: none;
-  background-color: var(--vk-button-bg-color);
-  border: var(--vk-border);
-  border-color: var(--vk-button-border-color);
-  padding: 8px 15px;
-  font-size: var(--vk-font-size-base);
-  border-radius: var(--vk-border-radius-base);
-  & + & {
-    margin-left: 12px;
-  }
-  &:hover,
-  &:focus {
-    color: var(--vk-button-hover-text-color);
-    border-color: var(--vk-button-hover-border-color);
-    background-color: var(--vk-button-hover-bg-color);
-    outline: none;    
-  }
-  &:active {
-    color: var(--vk-button-active-text-color);
-    border-color: var(--vk-button-active-border-color);
-    background-color: var(--vk-button-active-bg-color);
-    outline: none;
-  }
-  &.is-plain {
-    --vk-button-hover-text-color: var(--vk-color-primary);
-    --vk-button-hover-bg-color: var(--vk-fill-color-blank);
-    --vk-button-hover-border-color: var(--vk-color-primary);    
-  }
-  /*round*/
-  &.is-round {
-    border-radius: var(--vk-border-radius-round);
-  }
-  /*circle*/
-  &.is-circle {
-    border-radius: 50%;
-    padding: 8px;
-  }
-  /*disabled*/
-  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus, 
-  &[disabled], &[disabled]:hover, &[disabled]:focus 
-  {
-    color: var(--vk-button-disabled-text-color);
-    cursor: not-allowed;
-    background-image: none;
-    background-color: var(--vk-button-disabled-bg-color);
-    border-color: var(--vk-button-disabled-border-color);
-  }
-  [class*=vk-icon] + span {
-    margin-left: 6px;
-  }
+  outline: 0;
+  margin: 0;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
 }
-@each $val in primary,success,warning,info,danger {
-  .vk-button--$(val) {
-    --vk-button-text-color: var(--vk-color-white);
-    --vk-button-bg-color: var(--vk-color-$(val));
-    --vk-button-border-color: var(--vk-color-$(val));
-    --vk-button-outline-color: var(--vk-color-$(val)-light-5);
-    --vk-button-active-color: var(--vk-color-$(val)-dark-2);
-    --vk-button-hover-text-color: var(--vk-color-white);
-    --vk-button-hover-bg-color: var(--vk-color-$(val)-light-3);
-    --vk-button-hover-border-color: var(--vk-color-$(val)-light-3);
-    --vk-button-active-bg-color: var(--vk-color-$(val)-dark-2);
-    --vk-button-active-border-color: var(--vk-color-$(val)-dark-2);
-    --vk-button-disabled-text-color: var(--vk-color-white);
-    --vk-button-disabled-bg-color: var(--vk-color-$(val)-light-5);
-    --vk-button-disabled-border-color: var(--vk-color-$(val)-light-5);
-  }
-  .vk-button--$(val).is-plain {
-    --vk-button-text-color: var(--vk-color-$(val));
-    --vk-button-bg-color: var(--vk-color-$(val)-light-9);
-    --vk-button-border-color: var(--vk-color-$(val)-light-5);
-    --vk-button-hover-text-color: var(--vk-color-white);
-    --vk-button-hover-bg-color: var(--vk-color-$(val));
-    --vk-button-hover-border-color: var(--vk-color-$(val));
-    --vk-button-active-text-color: var(--vk-color-white);
-  }
+
+/* primary- */
+.el-button.el-button--primary {
+  background-color: var(--el-color-primary);
 }
-.vk-button--large {
-  --vk-button-size: 40px;
-  height: var(--vk-button-size);
-  padding: 12px 19px;
-  font-size: var(--vk-font-size-base);
-  border-radius: var(--vk-border-radius-base);
+/* success */
+.el-button.el-button--success {
+  background-color: var(--el-color-success);
 }
-.vk-button--small {
-  --vk-button-size: 24px;
-  height: var(--vk-button-size);
-  padding: 5px 11px;
-  font-size: 12px;
-  border-radius: calc(var(--vk-border-radius-base) - 1px);
+/* danger */
+.el-button.el-button--danger {
+  background-color: var(--el-color-danger);
 }
+/* warning */
+.el-button.el-button--warning {
+  background-color: var(--el-color-warning);
+}
+/* info */
+.el-button.el-button--info {
+  background-color: var(--el-color-info);
+}
+/* medium */
+/* samll */
+/* mini */
+
+/* round */

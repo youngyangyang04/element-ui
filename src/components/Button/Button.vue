@@ -1,47 +1,46 @@
 <template>
   <button
+    class="el-button"
     ref="_ref"
-    class="vk-button"
-    :class="{
-      [`vk-button--${type}`]: type,
-      [`vk-button--${size}`]: size,
-      'is-plain': plain,
-      'is-round': round,
-      'is-circle': circle,
-      'is-disabled': disabled,
-      'is-loading': loading
-    }"
+    :class="computedClass"
     :disabled="disabled || loading"
     :autofocus="autofocus"
     :type="nativeType"
   >
-    <Icon icon="spinner" spin v-if="loading" />
-    <Icon :icon="icon" v-if="icon" />
-    <span>
-      <slot />
-    </span>
+    <slot></slot>
   </button>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { ButtonProps } from './types'
-import Icon from '../Icon/Icon.vue'
-// import { buttonProps } from './types'
+import { buttonProps } from './types'
+import { computed, ref } from 'vue'
+// 定义组件名称
 defineOptions({
-  name: 'VkButton'
+  name: 'ElButton'
 })
-
-withDefaults(defineProps<ButtonProps>(), {
-  nativeType: 'button'
-})
-
+// 接收props
+const props = defineProps(buttonProps)
+// 定义组件实例
 const _ref = ref<HTMLButtonElement>()
-
+// defineExpose暴露实例
 defineExpose({
   ref: _ref
 })
+// 计算button的样式类
+const computedClass = computed(() => {
+  const { type, size, round, loading, circle, disabled, plain } = props
+  return [
+    type ? 'el-button--' + type : '',
+    size ? 'el-button--' + size : '',
+    { 
+      'is-round': round,
+      'is-loading': loading,
+      'is-circle': circle,
+      'is-disabled': disabled,
+      'is-plain': plain,
+    }
+  ]
+})
 </script>
-
 
 <style scoped>
 

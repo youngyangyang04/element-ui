@@ -1,0 +1,37 @@
+.el-container {
+  display: flex;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.el-container-vertical {
+  flex-direction: column;
+}
+.el-container-horizontal {
+  flex-direction: row;
+}
+.el-header,
+.el-footer,
+.el-aside,
+.el-main {
+  background-color: var(--el-color-layout-header);
+  color: var(--el-text-color-primary);
+  box-sizing: border-box;
+}
+.el-aside {
+  background-color: var(--el-color-layout-aside);
+}
+.el-main {
+  background-color: var(--el-color-layout-main);
+}
+.el-header,
+.el-footer
+{
+  line-height: 60px;
+  text-align: center;
+}
+.el-aside {
+  height: 100%;
+}
+.el-main {
+  flex: 1;
+}
