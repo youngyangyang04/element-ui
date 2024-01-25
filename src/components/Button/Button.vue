@@ -7,12 +7,20 @@
     :autofocus="autofocus"
     :type="nativeType"
   >
-    <slot></slot>
+    <!-- 如果按钮处于加载中 -->
+    <el-icon icon="spinner" v-if="loading" spin/>
+    <!-- 如果按钮传递图标 -->
+    <el-icon :icon="icon" v-if="icon" />
+    <span>
+      <slot></slot>
+    </span>
   </button>
 </template>
 <script setup lang="ts">
 import { buttonProps } from './types'
 import { computed, ref } from 'vue'
+// 引入Icon组件
+import ElIcon from '../Icon/Icon.vue'
 // 定义组件名称
 defineOptions({
   name: 'ElButton'
