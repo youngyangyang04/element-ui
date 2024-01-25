@@ -1,0 +1,8 @@
+.el-button-group {
+  display: inline-block;
+  font-size: 0; /* 防止按钮之间的空隙影响布局 */
+}
+
+.el-button-group > * {
+  margin-right: -1px; /* 修复按钮之间的间隙 */
+}

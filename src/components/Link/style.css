@@ -1,0 +1,100 @@
+.el-link {
+  margin-right: 8px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  text-decoration: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--el-text-color-primary);
+}
+.el-link.is-disabled {
+  cursor: not-allowed;
+}
+/* default */
+.el-link.el-link--default {
+  color: var(--el-text-color-primary);
+}
+.el-link.el-link--default.is-underline {
+  border-bottom: 1px solid var(--el-text-color-primary);
+}
+.el-link.el-link--default:hover,
+.el-link.el-link--default.is-disabled
+{
+  color: var(--el-text-color-placeholder);
+}
+/* primary */
+.el-link.el-link--primary {
+  color: var(--el-color-primary)
+}
+.el-link.el-link--primary:hover,
+.el-link.el-link--primary.is-diabled 
+{
+  color: var(--el-color-primary-hover)
+}
+.el-link.el-link--primary.is-underline {
+  border-bottom: 1px solid var(--el-color-primary);
+}
+
+/* success */
+.el-link.el-link--success {
+  color: var(--el-color-success)
+}
+.el-link.el-link--success:hover,
+.el-link.el-link--success.is-disabled
+{
+  color: var(--el-color-success-hover)
+}
+.el-link.el-link--success.is-underline {
+  border-bottom: 1px solid var(--el-color-success);
+}
+/* warning */
+.el-link.el-link--warning {
+  color: var(--el-color-warning)
+}
+.el-link.el-link--warning:hover,
+.el-link.el-link--warnig.is-disabled
+{
+  color: var(--el-color-warning-hover)
+}
+.el-link.el-link--warning.is-underline {
+  border-bottom: 1px solid var(--el-color-warning);
+}
+/* info */
+.el-link.el-link--info {
+  color: var(--el-color-info)
+}
+.el-link.el-link--info:hover,
+.el-link.el-link--info.is-disabled
+{
+  color: var(--el-color-info-hover)
+}
+.el-link.el-link--info.is-underline {
+  border-bottom: 1px solid var(--el-color-info);
+}
+
+/* danger */
+.el-link.el-link--danger {
+  color: var(--el-color-danger)
+}
+.el-link.el-link--danger:hover,
+.el-link.el-link--danger.is-disabled
+{
+  color: var(--el-color-danger-hover)
+}
+.el-link.el-link--danger.is-underline {
+  border-bottom: 1px solid var(--el-color-danger);
+}
+/* a标签中的内容 */
+.el-link .el-link__inner {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+

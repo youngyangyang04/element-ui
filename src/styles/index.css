@@ -3,4 +3,6 @@
 @import '../components/Button/style.css';
 @import '../components/Container/style.css';
 @import '../components/Collapse/style.css';
-@import '../components/Icon/style.css'
+@import '../components/Icon/style.css';
+@import '../components/Link/style.css';
+@import '../components/ButtonGroup/style.css';
