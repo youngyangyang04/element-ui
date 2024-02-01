@@ -1,0 +1,44 @@
+.el-message {
+  position: fixed;
+  left: 50%;
+  width: 380px;
+  height: 40px;
+  z-index: 9999;
+  margin-left: -190px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: top .3s ease-out;
+  &.is-close .el-message__content {
+    padding-right: 30px;
+  }
+  .el-message__close {
+    display: flex;
+    align-items: center;
+  }
+  .el-message__close svg {
+    cursor: pointer;
+  }
+}
+.el-message--warning {
+  background-color: #fdf6ec;
+  color: #b88230;
+}
+.el-message--success {
+  background-color: #f0f9eb;
+  color: #529b2e;
+}
+.el-message--info {
+  background-color: #f4f4f5;
+  color: #73767a;
+}
+.el-message--error {
+  background-color: #fef0f0;
+  color: #c45656;
+}
+.el-message.fade-up-enter-from,
+.el-message.fade-up-leave-to {
+  opacity: 0;
+  transform: translate(-50%, -100%);
+}
