@@ -1,0 +1,85 @@
+.el-input {
+  margin-bottom: 10px;
+  display: flex;
+}
+.el-input-label {
+  margin-right: 8px;
+  font-weight: bold;
+  color: #333;
+}
+.el-input-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  /* width: 220px; */
+}
+.el-input-prepend,
+.el-input-append {
+  background-color: #f5f7fa;
+  color: #909399;
+  padding: 0 20px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  height: 34px;
+  margin-top: 4px;
+}
+.el-input-prepend {
+  border: 1px solid var(--el-border-color);
+  margin-right: -3px;
+}
+.el-input-append {
+  border: 1px solid var(--el-border-color);
+  margin-left: -3px;
+}
+.el-input-content {
+  margin: 4px 2px;
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid var(--el-border-color);
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  color: #606266;
+}
+.el-input--default .el-input-content  {
+  height: 34px;
+  padding: 12px;
+  padding-left: 18px;
+}
+.el-input--large .el-input-content  {
+  height: 44px;
+  padding: 20px;
+}
+.el-input--small .el-input-content  {
+  height: 28px;
+  padding: 12px;
+}
+.el-input-content:disabled{
+  background-color: #f0f0f0;
+  opacity: .7;
+  cursor: not-allowed;
+}
+.el-input-content:focus {
+  border-color: #007bff;
+}
+.el-input-clear,
+.el-input-eye,
+.el-input-suffix,
+.el-input-prefix
+{
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #ccc;
+  font-size: 14px;
+}
+.el-input-prefix {
+  left: 6px;
+}
