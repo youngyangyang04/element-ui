@@ -1,0 +1,50 @@
+.el-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.el-dropdown-trigger {
+  cursor: pointer;
+}
+
+.el-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block;
+  min-width: 160px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.el-fade-in-enter-active, .el-fade-in-leave-active {
+  transition: opacity 0.2s;
+}
+
+.el-fade-in-enter, .el-fade-in-leave-to {
+  opacity: 0;
+}
+.el-dropdown-item {
+  cursor: pointer;
+  padding: 8px 12px;
+  color: #333;
+  white-space: nowrap;
+  user-select: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  &:active {
+    background-color: #e6e6e6;
+  }
+
+  &.is-disabled {
+    cursor: not-allowed;
+    color: #bbb;
+  }
+}
