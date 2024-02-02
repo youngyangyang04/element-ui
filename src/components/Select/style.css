@@ -1,0 +1,55 @@
+.el-select {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 32px;
+  .el-tooltip .el-tooltip__popper {
+    padding: 0;
+  }
+  .el-input {
+    .el-select-icon {
+      transition: transform 0.3s;
+      &.is-active {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .el-input-content {
+    cursor: pointer;
+  }
+  .el-select-menu {
+    list-style: none;
+    margin: 6px 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /* option 选项样式 */
+  .el-select-menu-item {
+    margin: 0;
+    font-size: 14px;
+    padding: 0 32px 0 20px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--el-text-color-primary);
+    height: 34px;
+    line-height: 34px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+    /* 选中选项的颜色为蓝色 */
+    &.is-selected {
+      color: var(--el-color-primary);
+      font-weight: 700;
+    }
+    &.is-disabled {
+      color: var(--el-text-color-placeholder);
+      cursor: not-allowed;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
