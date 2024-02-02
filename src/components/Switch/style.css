@@ -1,0 +1,146 @@
+.el-switch {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 20px;
+  height: 32px;
+  .el-swtich__input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    margin: 0;
+  }
+
+  /* 禁用状态的样式 */
+  &.is-disabled {
+    opacity: .6;
+    .el-switch__core {
+      cursor: not-allowed;
+    }
+  }
+
+  /* 选中状态：更改left偏移值 */
+  &.is-checked {
+    .el-switch__core {
+      /* border: green; */
+      border-color: var(--el-color-primary);
+      /* background-color: green; */
+      background-color: var(--el-color-primary);
+      .el-switch__action {
+        left: calc(100% - 17px);
+      }
+      .el-switch__inner {
+        padding: 0 18px 0 4px;
+      }
+    }
+  }
+}
+.el-switch--large {
+  font-size: 14px;
+  line-height: 24px;
+  height: 40px;
+
+  .el-switch__core {
+    min-width: 50px;
+    height: 24px;
+    border-radius: 12px;
+
+    .el-switch__action {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &.is-checked {
+    .el-switch__core .el-switch__action {
+      left: calc(100% - 21px);
+      color: var(--el-color-primary);
+    }
+  }
+}
+
+.el-switch--small {
+  font-size: 12px;
+  line-height: 16px;
+  height: 24px;
+  .el-switch__core {
+    min-width: 30px;
+    height: 16px;
+    border-radius: 8px;
+
+    .el-switch__action {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  &.is-checked {
+    .el-switch__core .el-switch__action {
+      left: calc(100% - 13px);
+      color: var(--el-color-primary);
+    }
+  }
+}
+.el-switch__label {
+    transition: .2s;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    vertical-align: middle;
+    color: #303133;
+}
+.el-switch__label--left {
+  margin-right:8px;
+}
+.el-switch__label--right {
+  margin-left: 8px;
+}
+/* 圆角的长方形：开关的外部 */
+.el-switch__core {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  height: 20px;
+  min-width: 40px;
+  border: 1px solid var(--el-border-color);
+  outline: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  background: var(--el-border-color);
+  cursor: pointer;
+  transition: border-color .3s, background-color .3s;
+  /* 圆形开关，背景为白色 */
+  .el-switch__action {
+    position: absolute;
+    left: 1px;
+    border-radius: 100%;
+    width: 16px;
+    height: 16px;
+    background-color: var(--el-color-white);
+    transition: all .3s;
+  }
+
+  .el-switch__inner {
+    width: 100%;
+    transition: all .3s;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 0 4px 0 18px;
+
+    .is-text {
+      font-size: 12px;
+      color: var(--el-color-white);
+      user-select: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
