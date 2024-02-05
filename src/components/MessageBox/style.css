@@ -1,0 +1,68 @@
+.messagebox-fade-enter-from,
+.messagebox-fade-leave-to {
+  opacity: 0;
+}
+.messagebox-fade-enter-active {
+  transition: opacity 0.6s ease-in;
+}
+.messagebox-fade-leave-active {
+  transition: opacity 0.6s ease-out;
+}
+.el-message-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  .el-message-box-wrapper {
+    position: absolute;
+    width: 420px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -210px;
+    background-color: #fff;
+    border-radius: 4px;
+    .el-message-box-title {
+      padding: 15px 15px 10px;
+      h1 {
+        font-size: 18px;
+        display: inline-block;
+      }
+      .el-message-box-close {
+        float: right;
+        font-size: 12px;
+        color: #999;
+      }
+    }
+    .el-message-box-content {
+      padding: 10px 15px;
+      p {
+        font-size: 14px;
+      }
+    }
+    .el-message-box-btns {
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: flex-end;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      padding: 5px 15px 15px;
+      .el-button {
+        width: 76px;
+        margin-right: 10px;
+      }
+    }
+    .message-input {
+      border: none;
+      outline: none;
+      width: 100%;
+      border: 1px solid #ddd;
+      height: 32px;
+      box-sizing: border-box;
+    }
+  }
+}

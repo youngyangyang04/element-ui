@@ -1,0 +1,50 @@
+.el-form {
+  --el-form-label-font-size: var(--el-font-size-base);
+}
+.el-form-item {
+  display: flex;
+  --font-size: 14px;
+  margin-bottom: 18px;
+  .el-form-item__label {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex: 0 0 auto;
+    font-size: var(--el-form-label-font-size);
+    color: var(--el-text-color-regular);
+    height: 32px;
+    line-height: 32px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    width: 150px;
+  }
+  .el-form-item__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex: 1;
+    line-height: 32px;
+    position: relative;
+    font-size: var(--font-size);
+    min-width: 0;
+  }
+  .el-form-item__error-msg {
+    padding-top: 2px;
+    color: var(--el-color-danger);
+    font-size: 12px;
+    line-height: 1;
+    padding-top: 2px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+.el-form-item.is-error .el-input__wrapper {
+  box-shadow: 0 0 0 1px var(--el-color-danger) inset;
+}
+.el-form-item.is-required > .el-form-item__label:before {
+  content: "*";
+  color: var(--el-color-danger);
+  margin-right: 4px;
+}
