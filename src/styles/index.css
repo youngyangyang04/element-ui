@@ -6,3 +6,12 @@
 @import '../components/Icon/style.css';
 @import '../components/Link/style.css';
 @import '../components/ButtonGroup/style.css';
+@import '../components/Alert/style.css';
+@import '../components/Tooltip/style.css';
+@import '../components/Rate/style.css';
+@import '../components/Message/style.css';
+@import '../components/Input/style.css';
+@import '../components/DatePicker/style.css';
+@import '../components/Switch/style.css';
+@import '../components/Select/style.css';
+@import '../components/MessageBox/style.css';

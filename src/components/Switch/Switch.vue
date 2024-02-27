@@ -15,8 +15,8 @@
     @keydown.enter="toggleSwitch"
     />
     <!-- activeText文字描述 -->
-    <span class="el-switch__label el-switch__label--left" v-if="!inlinePrompt && activeText">
-      {{ activeText }}
+    <span class="el-switch__label el-switch__label--left" v-if="!inlinePrompt && inactiveText">
+      {{  inactiveText }}
     </span>
     <!-- switch开关结构 -->
     <span class="el-switch__core" :style="switchStyle">
@@ -31,8 +31,8 @@
       </div>
     </span>
     <!-- inactiveText文字描述 -->
-    <span class="el-switch__label el-switch__label--right" v-if="!inlinePrompt && inactiveText">
-      {{  inactiveText }}
+    <span class="el-switch__label el-switch__label--right" v-if="!inlinePrompt && activeText">
+      {{ activeText }}
     </span>
   </div>
 </template>
@@ -45,6 +45,8 @@ defineOptions({
   name: 'ElSwitch'
 })
 const inputInstance = ref<HTMLInputElement>()
+
+// 设置默认属性
 const props = withDefaults(defineProps<SwitchProps>(), {
   disabled: false,
   size: 'large',
@@ -52,9 +54,9 @@ const props = withDefaults(defineProps<SwitchProps>(), {
   inactiveValue: false,
   inlinePrompt: false,
 })
-const emits = defineEmits<SwitchEmits>()
 // Switch的选项值
 const switchValue = ref(props.modelValue)
+const emits = defineEmits<SwitchEmits>()
 
 // 计算开关是否处于开启状态，modelValue 是否等于 activeValue
 const switchOn = ref(props.modelValue === props.activeValue);

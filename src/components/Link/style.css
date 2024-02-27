@@ -1,6 +1,6 @@
 .el-link {
   margin-right: 8px;
-  display: inline-flex;
+  /* display: inline-flex; */
   flex-direction: row;
   align-items: center;
   justify-content: center;

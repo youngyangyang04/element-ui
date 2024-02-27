@@ -52,10 +52,10 @@ import ElButton from '../Button/Button.vue';
 import type { MessageBoxOptions, ActionType } from './types';
 
 const state = reactive({
-  visible: false,
-  type: ''
+  visible: false,  // 控制弹窗显示与隐藏
+  type: '' // 记录用户操作类型
 });
-
+// 设置弹窗显示或隐藏
 const setVisible = (isVisible: boolean) => {
   state.visible = isVisible;
 };
@@ -78,6 +78,7 @@ const handleClickModal = () => {
 
 // 关闭 Messagebox 框
 const closeModal = () => {
+  // 如果弹窗已经关闭，则直接返回
   if (!state.visible) return;
   // 设置 visible 为 false，隐藏
   setVisible(false);
@@ -85,6 +86,7 @@ const closeModal = () => {
 
 // 处理按钮点击事件
 const handleAction = (type: ActionType) => {
+  // 记录用户操作类型
   state.type = type;
   // 关闭弹框
   closeModal();

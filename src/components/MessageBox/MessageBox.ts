@@ -73,7 +73,6 @@ const showMessageBox = (
         default:
           break;
       }
-
       // 隐藏并销毁弹窗
       hideMessageBox(app);
     }

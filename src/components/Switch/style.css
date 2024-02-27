@@ -4,6 +4,7 @@
   font-size: 14px;
   line-height: 20px;
   height: 32px;
+  margin-right: 10px;
   .el-swtich__input {
     position: absolute;
     width: 0;

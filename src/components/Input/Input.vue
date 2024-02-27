@@ -1,3 +1,6 @@
+/**
+ * Input组件，用于输入文本的组件
+ */
 <template lang="">
   <div class="el-input" :class="computedClass">
     <!-- label -->
@@ -22,8 +25,13 @@
         :disabled="disabled"
         :placeholder="placeholder"
         :readonly="readonly"
+        :autofocus="autofocus"
+        :autocomplete="autocomplete"
+        :form="form"
         @input="handleInput"
         @change="handleChange"
+        @focus="handleFocus"
+        @blur="handleBlur"
       />
       <!-- clear 清除全部内容 -->
       <span 
@@ -54,9 +62,11 @@
 </template>
 <script setup lang="ts">
 import type { InputProps, InputEmits } from './types'
-import { ref, computed, useSlots, watch } from 'vue';
+import { ref, computed, useSlots, watch, inject } from 'vue';
 import type { Ref } from 'vue'
+import { formItemContextKey } from '../Form/types'
 import ElIcon from '../Icon/Icon.vue'
+const isFocus = ref(false)
 const slots = useSlots()
 // 定义组件名称
 defineOptions({
@@ -69,6 +79,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   modelValue: '',
   placeholder: 'Please input'
 })
+
 // 定义emits
 const emits = defineEmits<InputEmits>()
 // 计算属性：根据props设置input组件类名
@@ -76,6 +87,7 @@ const computedClass = computed(() => {
   return {
     [`el-input--${props.type}`]: props.type,
     'is-disabled': props.disabled,
+    'is-focus': isFocus,
     [`el-input--${props.size}`]: props.size
   }
 })
@@ -87,10 +99,22 @@ const handleInput = (event: Event) => {
   inputValue.value = target.value
   emits('update:modelValue', target.value)
   emits('input', target.value)
+  runValidation('input')
 }
 // 处理change事件
 const handleChange = () => {
   emits('change', inputValue.value)
+  runValidation('change')
+}
+const handleFocus = (event: FocusEvent) => {
+  isFocus.value = true
+  emits('focus', event)
+}
+const handleBlur = (event: FocusEvent) => {
+  console.log('blur triggered')
+  isFocus.value = false
+  emits('blur', event)
+  runValidation('blur')
 }
 // 监听外部传入的value变化
 watch(() => props.modelValue, (newValue: string) => {
@@ -131,9 +155,16 @@ const changeInputType = () => {
   inputType.value = 'password'
   eyeIcon.value = 'eye'
 }
-// 暴露input实例
+// 暴露input实例, 类型为HTMLInputElement
 const inputInstance = ref() as Ref<HTMLInputElement>
 
+const formItemContext = inject(formItemContextKey)
+
+const runValidation = (trigger: string) => {
+  if (props.validateEvent) {
+    formItemContext?.validate?.(trigger).catch((err: unknown) => console.error(err))
+  }
+}
 defineExpose({
   inputInstance
 })

@@ -32,5 +32,9 @@ module.exports = {
         "vue"
     ],
     "rules": {
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "@typescript-eslint/no-unused-vars": ["off"],
+        'vue/valid-define-emits': 'error',
+        'vue/require-toggle-inside-transition': 'off'
     }
 }

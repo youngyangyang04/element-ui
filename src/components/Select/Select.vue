@@ -18,8 +18,9 @@
       ref="inputRef"
       v-model="states.inputValue"
       :disabled="disabled"
-      :placeholder="placeholder"
-      readonly
+      :placeholder="filteredPlaceholder"
+      :readonly="!filterable"
+      @input="debounceOnFilter"
       >
         <template #suffix>
           <el-icon 
@@ -39,16 +40,24 @@
       </el-input>
       <!--  选项 -->
       <template #content>
-        <ul class="el-select-menu">
-          <template v-for="(option, index) in options" :key="index">
+        <!-- loading -->
+        <div class="el-select-loading" v-if="states.loading">
+
+        </div>
+        <!-- No Data -->
+        <div class="el-select-nodata" v-if="filterable && filterOptions.length === 0">
+
+        </div>
+        <ul class="el-select-menu" v-else>
+          <template v-for="(option, index) in filterOptions" :key="index">
             <li
             class="el-select-menu-item"
             :class="{'is-disabled': option.disabled, 
             'is-selected': states.selectOption?.value === option.value}"
             :id="`el-select-menu-item-${option.value}`"
             @click.stop="itemSelect(option)"
-            >
-              {{ option.label }}
+            > 
+              <RenderVnode :vNode="renderLabel ? renderLabel(option) : option.label"/>
             </li> 
           </template>
         </ul>
@@ -57,21 +66,26 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { SelectProps, SelectEmits, SelectOptions, SelectStates } from './types'
+import type { SelectProps, SelectEmits, SelectOptions, SelectStates, RenderLabelFunc } from './types'
 import ElInput from '../Input/Input.vue'
 import ElTooltip from '../Tooltip/Tooltip.vue'
 import type { TooltipInstance } from '../Tooltip/types'
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch } from 'vue'
 import type{ Ref } from 'vue'
-import { offset } from '@popperjs/core'
+// import { offset } from '@popperjs/core'
 import ElIcon from '../Icon/Icon.vue'
+import RenderVnode from '../Common/RenderVnode'
+import { isFunction, debounce } from 'lodash-es'
 defineOptions({
   name: 'ElSelect'
 })
 const props = withDefaults(defineProps<SelectProps>(), {
-  clearable: false
+  clearable: false,
+  // 设置数组默认值
+  options: () => []
 })
 const emits = defineEmits<SelectEmits>()
+const timeout = computed((() => props.remote ? 300 : 0))
 // 查找对应的option
 const findOption = (value: string) => {
   const option = props.options.find(option => option.value === value)
@@ -82,7 +96,8 @@ const initialOption = findOption(props.modelValue)
 const states = reactive<SelectStates>( {
   inputValue: initialOption ? initialOption.label : '',
   selectOption: initialOption,
-  mouseHover: false
+  mouseHover: false,
+  loading: false
 })
 const tooltipRef = ref() as Ref<TooltipInstance>
 const popperOptions: any = {
@@ -104,13 +119,54 @@ const popperOptions: any = {
     }
   ],
 }
+const filterOptions = ref(props.options)
+watch(() => props.options, (newOptions) => {
+  filterOptions.value = newOptions
+})
+const generateFilterOptions = async (searchValue: string) => {
+  if (!props.filterable) return
+  if (props.filterMethod && isFunction(props.filterMethod)) {
+    filterOptions.value = props.filterMethod(searchValue)
+  } else if(props.remote && props.remoteMethod && isFunction(props.remoteMethod)) {
+    states.loading = true
+    try {
+      // 远程请求支持防抖
+      filterOptions.value = await props.remoteMethod(searchValue)
+    } catch(e) {
+      console.error(e)
+      filterOptions.value = []
+    } finally {
+      states.loading = false
+    }
+  }
+  else { // 默认过滤规则
+    filterOptions.value = props.options.filter(option => option.label.includes(searchValue))
+  }
+}
+const onFilter = () => {
+  generateFilterOptions(states.inputValue)
+}
+const debounceOnFilter = debounce(() => {
+  onFilter()
+}, timeout.value)
 const isDropdownShow = ref(false)
 const inputRef = ref()
 const changeDropdownShow = (show: boolean) => {
   if (show) {
+    // 如果是filter并且之前有值
+    if (props.filterable && states.selectOption) {
+      states.inputValue = ''
+    }
+    if (props.filterable) {
+      // 默认选项的生成
+      generateFilterOptions(states.inputValue)
+    }
     tooltipRef.value.show()
   } else {
     tooltipRef.value.hide()
+    if (props.clearable) {
+      states.inputValue = states.selectOption ? states.selectOption.label : ''
+    }
   }
   isDropdownShow.value = show
   emits('visible-change', show)
@@ -136,6 +192,13 @@ const itemSelect = (e: SelectOptions) => {
 const showClearIcon = computed(() => {
   // hover clearable inputValue 
   return props.clearable && states.mouseHover && states.selectOption && states.inputValue.trim() !== ''
+})
+const filteredPlaceholder = computed(() => {
+  if (props.filterable && states.selectOption && isDropdownShow.value) {
+    return states.selectOption.label
+  } else {
+    return props.placeholder
+  }
 })
 const onClear = () => {
   states.inputValue = ''

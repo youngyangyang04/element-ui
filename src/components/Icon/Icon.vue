@@ -5,13 +5,13 @@
   </i>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
-// omit函数用于排除对象的属性，传递处理的对象和排除的属性名称数组
-import { omit } from 'lodash-es'
 // 引入FontAwesomeIcon 组件
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // 引入FontAwesomeIcon 组件接收的props
 import type { IconProps } from './types'
+// omit函数用于排除对象的属性，传递处理的对象和排除的属性名称数组
+import { omit } from 'lodash-es'
+import { computed } from 'vue'
 defineOptions({
   name: 'ElIcon',
   inheritAttrs: false

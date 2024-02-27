@@ -7,11 +7,20 @@
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #999;
+}
+.iconfont.el-rate--default {
+  font-size: 16px;
+}
+.iconfont.el-rate--large {
+  font-size: 18px;
+}
+.iconfont.el-rate--small {
+  font-size: 14px;
 }
 
 .icon-star:before {
@@ -23,7 +32,4 @@
 }
 .iconfont.active {
   color: #FBAB06;
-}
-.icon-star.is-disabled {
-  cursor: not-allowed;
 }

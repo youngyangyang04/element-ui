@@ -1,26 +1,30 @@
-// Popper.js 相关类型
-import type { Placement, Options } from '@popperjs/core';
+// 引入 Popper.js 核心库的类型定义
+import type { Placement, Options } from '@popperjs/core'
 
-// Tooltip 组件的 props 定义
+// 定义 Tooltip 组件的属性接口
 export interface TooltipProps {
-  content?: string;                     // Tooltip 内容
-  trigger?: 'hover' | 'click';          // 触发方式：悬停或点击
-  placement?: Placement;                // Tooltip 定位方式
-  manual?: boolean;                     // 是否手动控制 Tooltip 的显示与隐藏
-  popperOptions?: Partial<Options>;     // Popper.js 的选项配置
-  transition?: string;                  // 过渡效果的 CSS 类名
-  openDelay?: number;                   // 显示延迟时间（毫秒）
-  closeDelay?: number;                  // 隐藏延迟时间（毫秒）
+  content? : string; // 提示内容
+  trigger?: 'hover' | 'click'; // 触发方式：鼠标悬停或点击
+  placement?: Placement; // 提示框位置
+  manual?: boolean; // 是否手动控制显示
+  popperOptions?: Partial<Options>; // Popper.js 实例选项
+  transition?: string; // 过渡效果
+  openDelay?: number; // 打开延迟时间
+  closeDelay?: number; // 关闭延迟时间
 }
 
-// Tooltip 组件的事件定义
+// 定义 Tooltip 组件的事件触发器
 export interface TooltipEmits {
-  (e: 'visible-change', value: boolean): void;   // 控制 Tooltip 是否可见
-  (e: 'click-outside', value: boolean): void;    // 点击该组件外部，控制该组件的显示隐藏
+  // 提示框可见性变化事件
+  (e: 'visible-change', value: boolean) : void;
+  // 点击外部关闭事件
+  (e: 'click-outside', value: boolean) : void;
 }
 
-// Tooltip 实例的方法定义
+// 定义 Tooltip 实例接口
 export interface TooltipInstance {
-  show: () => void;   // 显示 Tooltip
-  hide: () => void;   // 隐藏 Tooltip
+  // 显示提示框的方法
+  show: () => void;
+  // 隐藏提示框的方法
+  hide: () => void;
 }

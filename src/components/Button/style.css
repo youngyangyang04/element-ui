@@ -8,7 +8,6 @@
   border: 1px solid #dcdfe6;
   color: var(--el-color-white);
   text-align: center;
-  
   box-sizing: border-box;
   outline: 0;
   margin: 0;
@@ -18,9 +17,11 @@
   padding: 12px 20px;
   font-size: 14px;
   border-radius: 4px;
+  & + & {
+    margin-left: 12px;
+  }
 }
-
-/* primary- */
+  /* primary- */
 .el-button.el-button--primary {
   background-color: var(--el-color-primary);
 }
@@ -41,11 +42,5 @@
   background-color: var(--el-color-info);
 }
 /* medium */
-/* samll */
+/* small */
 /* mini */
-
-/* round */
-
-[class*=el-icon] + span {
-  margin-left: 8px;
-}

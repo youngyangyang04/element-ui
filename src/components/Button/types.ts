@@ -2,7 +2,7 @@ import type { PropType } from 'vue'
 // 按钮类型
 export type ButtonType = 'primary'| 'success'| 'info' | 'warning'| 'danger'
 // 按钮尺寸, 额外的尺寸：medium、small、mini，通过设置size属性来配置它们。
-export type ButtonSizeType = 'medium' | 'small' | 'mini'
+export type ButtonSizeType = 'medium' | 'small' | 'large'
 // 原生按钮类型
 export type NativeType = 'button' | 'submit' | 'reset'
 export const buttonProps = {

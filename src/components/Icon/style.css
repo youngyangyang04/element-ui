@@ -10,4 +10,5 @@
   fill: currentColor;
   font-size: inherit;
   color: var(--color);
+  margin: 10px;
 }

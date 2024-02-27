@@ -4,8 +4,10 @@
       v-for="num in max"
       class="iconfont icon-star"
       :key="num"
-      :class="{ active: num <= rateNum}"
-      :style="starStyle"
+      :class="{ active: num <= rateNum, [`el-rate--${size}`]: true}"
+      :style="{
+        'color': num <= rateNum ? color : voidColor
+      }"
       @click=" setRateNum(num)"
     ></span>
   </div>
@@ -16,11 +18,10 @@ import { RateProps, RateEmits } from './types';
 import { useRate } from './useRate';
 import { computed } from 'vue';
 const props = withDefaults(defineProps<RateProps>(), {
-  nums: 3,
-  size: 'default',
-  max: 5,
+  nums: 3,       // 默认星星数量为3
+  size: 'default',  // 默认大小为'default'
+  max: 5,        // 最大分数为5
 });
-
 const emits = defineEmits<RateEmits>();
 
 defineOptions({
@@ -28,11 +29,8 @@ defineOptions({
 });
 
 const [rateNum, setRateNum] = useRate(props.nums, () => {
+  // 触发改变评分数量事件
   emits('changeRateNums', rateNum.value);
 });
 
-// 提取样式到 computed
-const starStyle = computed(() => ({
-  color: props.color,
-}));
 </script>
