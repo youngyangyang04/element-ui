@@ -37,21 +37,21 @@ const routes: Array<RouteRecordRaw> = [
         name: 'ElInput',
         component: () => import('../views/input/input.vue')
       },
-      {
-        path: '/datepicker',
-        name: 'ElDatePicker',
-        component: () => import('../views/datepicker/datepicker.vue')
-      },
-      {
-        path: '/pagination',
-        name: 'ElPagination',
-        component: () => import('../views/pagination/pagination.vue')
-      },
-      {
-        path: '/table',
-        name: 'ElTable',
-        component: () => import ('../views/table/table.vue')
-      },
+      // {
+      //   path: '/datepicker',
+      //   name: 'ElDatePicker',
+      //   component: () => import('../views/datepicker/datepicker.vue')
+      // },
+      // {
+      //   path: '/pagination',
+      //   name: 'ElPagination',
+      //   component: () => import('../views/pagination/pagination.vue')
+      // },
+      // {
+      //   path: '/table',
+      //   name: 'ElTable',
+      //   component: () => import ('../views/table/table.vue')
+      // },
       {
         path: '/switch',
         name: 'ElSwitch',
