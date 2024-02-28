@@ -17,11 +17,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'ElTooltip',
         component: () => import('../views/tooltip/tooltip.vue')
       },
-      {
-        path: '/dropdown',
-        name: 'ElDropdown',
-        component: () => import('../views//dropdown/dropdown.vue')
-      },
+      // {
+      //   path: '/dropdown',
+      //   name: 'ElDropdown',
+      //   component: () => import('../views//dropdown/dropdown.vue')
+      // },
       {
         path: '/rate',
         name: 'ElRate',

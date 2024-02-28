@@ -13,3 +13,10 @@ npm run docs:dev
 # 启动项目
 npm run dev
 ```
+## 示例
+
+![image-20240228153436973](https://kstar-1253855093.cos.ap-nanjing.myqcloud.com/baguwen1.0/image-20240228153436973.png)
+
+![image-20240228153506783](https://kstar-1253855093.cos.ap-nanjing.myqcloud.com/baguwen1.0/image-20240228153506783.png)
+
+![image-20240228153549080](https://kstar-1253855093.cos.ap-nanjing.myqcloud.com/baguwen1.0/image-20240228153549080.png)
