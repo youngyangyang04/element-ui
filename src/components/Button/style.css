@@ -20,26 +20,86 @@
   & + & {
     margin-left: 12px;
   }
+  &.is-disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  &.is-round {
+    border-radius: var(--el-border-radius-round);
+  }
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  &:hover {
+    opacity: 0.7;
+  }
 }
   /* primary- */
 .el-button.el-button--primary {
   background-color: var(--el-color-primary);
 }
+.el-button.el-button--primary.is-plain {
+  border: rgb(160, 207, 255);
+  color:  rgb(64, 158, 255);
+  background-color: rgb(236, 245, 255)
+}
+.el-button.el-button--primary.is-plain:hover {
+  background-color: var(--el-color-primary);
+  color: #fff;
+}
 /* success */
 .el-button.el-button--success {
-  background-color: var(--el-color-success);
+  background-color: var(--el-color-success)
 }
+.el-button.el-button--success.is-plain {
+  background-color:rgb(240, 249, 235);
+  color: rgb(103, 194, 58);
+  border: rgb(179, 225, 157);
+}
+.el-button.el-button--success.is-plain:hover{
+  background-color: var(--el-color-success);
+  color: #fff
+}
+
 /* danger */
 .el-button.el-button--danger {
   background-color: var(--el-color-danger);
+}
+.el-button.el-button--danger.is-plain {
+  border: rgb(250, 182, 182);
+  background-color: rgb(254, 240, 240);
+  color: rgb(245, 108, 108)
+}
+.el-button.el-button--danger.is-plain:hover {
+  background-color: var(--el-color-danger);
+  color: #fff
 }
 /* warning */
 .el-button.el-button--warning {
   background-color: var(--el-color-warning);
 }
+.el-button.el-button--warning.is-plain {
+  color: rgb(230, 162, 60);
+  background-color: rgb(253, 246, 236);
+  border: rgb(243, 209, 158)
+}
+.el-button.el-button--warning.is-plain:hover {
+  background-color: var(--el-color-warning);
+  color: #fff;
+}
 /* info */
 .el-button.el-button--info {
   background-color: var(--el-color-info);
+}
+.el-button.el-button--info.is-plain {
+  background-color: rgb(244, 244, 245);
+  border: rgb(200, 201, 204);
+  color: rgb(144, 147, 153)
+}
+.el-button.el-button--info.is-plain:hover {
+  background-color: var(--el-color-info);
+  color: #fff;
 }
 /* medium */
 /* small */
