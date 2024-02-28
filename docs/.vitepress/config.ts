@@ -60,6 +60,7 @@ export default defineConfig({
       md.use(containerPreview)
       md.use(componentPreview)
     }
-  }
+  },
+  base: '/element-ui/'
 })
 

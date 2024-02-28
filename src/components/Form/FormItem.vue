@@ -1,4 +1,5 @@
 <template>
+  <!-- 表单项组件模板 -->
   <div 
     class="el-form-item" 
     ref="formItemRef"
@@ -24,24 +25,36 @@
 </template>
 
 <script setup lang="ts">
+// 导入需要的模块
 import { inject, reactive, ref, computed, onMounted, onUnmounted, provide } from 'vue'
 import  AsyncValidator from 'async-validator'
 import type { RuleItem } from 'async-validator'
 import { isNil } from 'lodash-es'
 import { formItemProps, formContextKey, formItemContextKey } from './types'
 import  type {  FormItemContext, FormValidateFailure } from './types'
+
+// 定义 props
 const props = defineProps(formItemProps)
+
+// 设置组件选项
 defineOptions({
   name: 'ElFormItem'
 })
+
+// 获取表单上下文
 const formContext = inject(formContextKey)
+
+// 定义验证状态
 const validateStatus = reactive({
   state: 'init',
   errorMsg: '',
   loading: false
 })
+
+// 表单项的引用
 const formItemRef = ref<HTMLDivElement>()
-// get value
+
+// 计算属性，获取内部值
 const innerValue = computed(() => {
   const model = formContext?.model
   if (model && props.prop && !isNil(model[props.prop])) {
@@ -51,9 +64,10 @@ const innerValue = computed(() => {
   }
 })
 
+// 初始值
 let initialValue: any = undefined
-// get the rules
-// return [{ type: 'string', required: true, trigger: 'blur' }, { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }]
+
+// 获取表单项规则的计算属性
 const getItemRules = computed(() => {
   const rules = formContext?.rules
   if (rules && props.prop && rules[props.prop]) {
@@ -62,16 +76,17 @@ const getItemRules = computed(() => {
     return []
   }
 })
+
+// 是否为必填项的计算属性
 const isRequired = computed(() => {
   return getItemRules.value?.some(rule => rule.required)
 })
-// get rules based on which time to trigger
+
+// 根据触发时机获取规则
 const getTriggeredRules = (trigger?: string) => {
   const itemRules = getItemRules.value
   if (itemRules) {
     return itemRules.filter(rule => {
-      // 如果 trigger参数 没有传，说明是调用要验证所有参数
-      // 假如 rule 中没有 trigger ，那么这条在任何情况下都需要验证
       if (!rule.trigger || !trigger) return true
       return rule.trigger && rule.trigger === trigger
     }).map(({ trigger, ...rule }): RuleItem => rule)
@@ -79,7 +94,8 @@ const getTriggeredRules = (trigger?: string) => {
     return []
   }
 }
-// validate the field
+
+// 验证字段的函数
 const validate = async (trigger?: string) => {
   const modelName = props.prop
   const triggeredRules = getTriggeredRules(trigger)
@@ -106,12 +122,15 @@ const validate = async (trigger?: string) => {
       })
   }
 }
-// clear validate
+
+// 清除验证状态的函数
 const clearValidate = () => {
   validateStatus.state = 'init'
   validateStatus.errorMsg = ''
   validateStatus.loading = false
 }
+
+// 重置字段的函数
 const resetField = () => {
   const model = formContext?.model
   clearValidate()
@@ -120,6 +139,7 @@ const resetField = () => {
   }
 }
 
+// 表单项上下文
 const context: FormItemContext = reactive({
   $el: formItemRef,
   resetField,
@@ -127,24 +147,32 @@ const context: FormItemContext = reactive({
   prop: props.prop || '',
   validate
 })
+
+// 提供表单项上下文
 provide(formItemContextKey, context)
+
+// 组件挂载时执行的钩子函数
 onMounted(() => {
   if (props.prop) {
     formContext?.addField(context)
     initialValue = innerValue.value
   }
 })
+
+// 组件卸载时执行的钩子函数
 onUnmounted(() => {
   formContext?.removeField(context)
 })
+
+// 暴露供外部使用的函数和状态
 defineExpose({
-  /** @description validation message */
+  /** @description 验证状态 */
   validateStatus,
-  /** @description validate form item */
+  /** @description 验证表单项 */
   validate,
-  /** @description clear validation status */
+  /** @description 清除验证状态 */
   clearValidate,
-  /** @description reset field value */
+  /** @description 重置字段值 */
   resetField,
 })
 </script>
