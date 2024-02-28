@@ -14,6 +14,6 @@ git add -A
 git commit -m 'deploy'
 
 # 意思为将master构建后的代码合并到gh-pages分支上，然后在gh-pages分支上部署~
-git push -f git@github.com:youngyangyang04/element-ui.git master:gh-pages
+git push -f git@github.com:jinbudaily/vue-elem.git master:gh-pages
 
 cd -
