@@ -35,7 +35,8 @@ export default defineConfig({
           { text: '反馈 Alert', link: '/components/alert'},
           { text: '消息提示 Message', link: '/components/Message'},
           { text: '消息弹出框 MessageBox', link: '/components/MessageBox'},
-          { text: '文字提示 Tooltip', link: '/components/Tooltip'}
+          { text: '文字提示 Tooltip', link: '/components/Tooltip'},
+          { text: '下拉菜单 Dropdown', link: '/components/DropDown'}
         ]
       },
       {

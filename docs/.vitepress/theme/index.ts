@@ -7,6 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 // 自定义样式
 import '../../../src/styles/index.css'
+import './index.css'
 library.add(fas)
 export default {
   ...DefaultTheme,
